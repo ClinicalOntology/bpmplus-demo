@@ -1,28 +1,19 @@
 package org.clinicalontology.bpmplus.htn;
 
+import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.parser.IParser;
+import org.hl7.fhir.dstu3.model.Observation;
+import org.hl7.fhir.instance.model.api.IBaseResource;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-
-import org.hl7.fhir.dstu3.formats.IParser;
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Coding;
-import org.hl7.fhir.dstu3.model.Condition;
-import org.hl7.fhir.dstu3.model.MedicationRequest;
-import org.hl7.fhir.dstu3.model.Observation;
-import org.hl7.fhir.dstu3.model.Observation.ObservationComponentComponent;
-import org.hl7.fhir.dstu3.model.Patient;
-import org.kie.api.KieServices;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
-
-import ca.uhn.fhir.context.FhirContext;
 
 
 
 class Tester {
 
-	public void processFiles(File folder, IParser parser) {
+	public void processFiles(File folder, IParser parser) throws Exception {
 		for (File fileEntry : folder.listFiles()) {
 			if (fileEntry.isDirectory()) {
 				// Do nothing
@@ -30,8 +21,9 @@ class Tester {
 				FileReader reader = new FileReader(fileEntry);
 				BufferedReader bufferReader = new BufferedReader(reader);
 
-				while ((line = bufferReader.readLine()) != null) {
-					Resource resource = parser.parseResource(line);
+				String line = null;
+				while ((String line = bufferReader.readLine()) != null) {
+					IBaseResource resource = parser.parseResource(line);
 					if (resource instanceof Observation) {
 						// do xyz
 					}
@@ -41,7 +33,7 @@ class Tester {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		HtnDemo htnDemo = new HtnDemo();
 		htnDemo.demo();
 
