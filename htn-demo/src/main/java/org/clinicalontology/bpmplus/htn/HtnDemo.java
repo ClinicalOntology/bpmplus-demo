@@ -72,10 +72,10 @@ public class HtnDemo {
             }
         }
         
-        final DMNRuntime runtime = DMNRuntimeUtil.createRuntime("BP Recommendations.dmn", this.getClass() );
+        final DMNRuntime runtime = DMNModelLoader.createRuntime("BP Recommendations.dmn", this.getClass() );
         final DMNModel dmnModel = runtime.getModel("http://www.trisotech.com/definitions/_fcefcca4-3897-4be0-8c8e-4d81bba9cee5", "BP Recommendations" );
         assertThat( dmnModel, notNullValue() );
-        assertThat( DMNRuntimeUtil.formatMessages( dmnModel.getMessages() ), dmnModel.hasErrors(), is(false) ); // need proper type support to enable this
+        assertThat( DMNModelLoader.formatMessages( dmnModel.getMessages() ), dmnModel.hasErrors(), is(false) ); // need proper type support to enable this
 
         final DMNContext context = DMNFactory.newContext();
 
