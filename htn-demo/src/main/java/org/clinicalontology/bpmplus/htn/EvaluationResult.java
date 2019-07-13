@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class EvaluationResult {
 
-    private Map<String,Boolean> predicateEvaluation = new HashMap<>();
-    private List<String> bpMedications = new ArrayList<>();
+    private Map<String,Boolean> predicateEvaluation = new HashMap<String,Boolean>();
+    private List<String> bpMedications = new ArrayList<String>();
 
     public Boolean hasHighBp() {
         return predicateEvaluation.get(Constants.PREDICATE_HAS_HIGH_BP);
