@@ -1,0 +1,2 @@
+{"resourceType":"Patient","id":"1000004","identifier":[{"system":"http://edu.utah.health/mrn","value":"1000004"}],"name":[{"family":"HealthyMan","given":["John"]}],"gender":"male","birthDate":"1956-07-12"}
+{"resourceType":"Observation","subject":{"reference":"Patient/1000004"},"component":[{"code":{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.1","code":"8462-4"}]},"valueQuantity":{"value":87,"unit":"mmHg"}},{"code":{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.1","code":"8480-6"}]},"valueQuantity":{"value":145,"unit":"mmHg"}}]}

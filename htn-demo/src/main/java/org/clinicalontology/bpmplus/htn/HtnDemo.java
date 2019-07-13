@@ -17,13 +17,6 @@ import org.kie.api.runtime.manager.RuntimeManager;
 
 import org.kie.api.runtime.process.ProcessInstance;
 
-//import org.kie.remote.client.api.RemoteRuntimeEngineFactory;
-import org.kie.server.client.KieServicesClient;
-import org.kie.server.client.KieServicesConfiguration;
-import org.kie.server.client.KieServicesFactory;
-import org.kie.server.client.ProcessServicesClient;
-import org.kie.server.client.UserTaskServicesClient;
-
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -47,8 +40,6 @@ import org.kie.dmn.core.compiler.RuntimeTypeCheckOption;
 import org.kie.dmn.core.impl.DMNRuntimeImpl;
 
 import org.kie.dmn.core.util.DMNRuntimeUtil;
-//import org.clinicalontology.bpmplus.htn.DMNRuntimeUtil;
-import org.kie.dmn.core.util.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -119,7 +110,7 @@ public class HtnDemo {
 
         final DMNContext context = DMNFactory.newContext();
 
-        context.set("Patient Record", LoadTest3());
+        context.set("Patient Record", LoadTest4());
 
         final DMNResult dmnResult = runtime.evaluateAll(dmnModel, context );
 
@@ -144,7 +135,7 @@ public class HtnDemo {
     	List<String> conditions = new ArrayList<>(  );
     	
     	medicationList.add("1000001");  //Amlodipine 5 MG / Hydrochlorothiazide 25 MG / Olmesartan medoxomil 40 MG Oral Table
-    	medicationList.add("madeup"); // junk
+    	medicationList.add("100000122"); // junk
     	medicationList.add("1011753"); //aliskiren 150 MG / Hydrochlorothiazide 25 MG Oral Tablet"
     	
     	
@@ -160,7 +151,30 @@ public class HtnDemo {
     	
     	return patient_record;
     }
+    private Map LoadTest4()  // target Systolic is 150, has NO Meds , has Hypertension
+    {
     
+    	final Map<String, Object> patient_record = new HashMap<String, Object>(  );
+    	List<String> medicationList = new ArrayList<>(  );
+    	List<String> conditions = new ArrayList<>(  );
+    	
+    	medicationList.add("10000011232");  //Amlodipine 5 MG / Hydrochlorothiazide 25 MG / Olmesartan medoxomil 40 MG Oral Table
+    	medicationList.add("100000122"); // junk
+    	medicationList.add("101175312321"); //aliskiren 150 MG / Hydrochlorothiazide 25 MG Oral Tablet"
+    	
+    	
+    	//conditions.add("109171000119104"); //Retinal edema co-occurrent and due to type 1 diabetes mellitus (disorder)"
+    	//conditions.add("585.5"); //Chronic kidney disease, Stage V"
+    	conditions.add("585.4"); //Junk
+    	
+    	patient_record.put("Medication Codes", medicationList);
+    	patient_record.put("Active Conditions", conditions);
+    	patient_record.put("Systolic", number(151));
+    	patient_record.put("Diastolic", number(80));
+    	patient_record.put("DOB", LocalDate.parse("1959-01-01"));
+    	
+    	return patient_record;
+    }
     private Map LoadTest1()
     {
     
@@ -169,7 +183,7 @@ public class HtnDemo {
     	List<String> conditions = new ArrayList<>(  );
     	
     	medicationList.add("1000001");  //Amlodipine 5 MG / Hydrochlorothiazide 25 MG / Olmesartan medoxomil 40 MG Oral Table
-    	medicationList.add("madeup"); // junk
+    	medicationList.add("1000001111"); // junk
     	medicationList.add("1011753"); //aliskiren 150 MG / Hydrochlorothiazide 25 MG Oral Tablet"
     	
     	

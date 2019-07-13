@@ -34,20 +34,17 @@
         <semantic:itemComponent isCollection="false" name="Systolic" id="_c7378dc6-14cf-472c-b17c-ff9e39dc99ff">
             <semantic:typeRef>number</semantic:typeRef>
         </semantic:itemComponent>
-        <semantic:itemComponent id="_85052e0f-7a99-4733-a24f-c810902bbc9e" name="rule">
-            <semantic:typeRef>number</semantic:typeRef>
-        </semantic:itemComponent>
     </semantic:itemDefinition>
     <semantic:itemDefinition isCollection="true" name="tTextList" label="tTextList">
         <semantic:typeRef>string</semantic:typeRef>
     </semantic:itemDefinition>
     <semantic:decisionService id="_fcefcca4-3897-4be0-8c8e-4d81bba9cee5_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true">
-        <semantic:variable name="Whole Model Decision Service" id="_52812ddb-e996-4e30-98fd-09159c6b3e08" typeRef="Any"/>
+        <semantic:variable name="Whole Model Decision Service" id="_d3c0023d-f101-4fac-b2c9-0b46cfc87dc8" typeRef="Any"/>
         <semantic:outputDecision href="#_d9f4396b-218b-47e4-b7fe-33f7bf321907"/>
         <semantic:inputData href="#_02aa58c8-77ab-4755-aa06-3734ca18b308"/>
     </semantic:decisionService>
     <semantic:decisionService id="_1651e7e8-cd08-4606-88a2-d8613893c060_DS" name="Diagram Page 1" triso:dynamicDecisionService="true">
-        <semantic:variable name="Diagram Page 1" id="_e790850f-7f20-47fd-857d-05c572f5c587" typeRef="Any"/>
+        <semantic:variable name="Diagram Page 1" id="_91257bbd-4c97-4d7a-bcc0-4a0a92c104ad" typeRef="Any"/>
         <semantic:outputDecision href="#_d9f4396b-218b-47e4-b7fe-33f7bf321907"/>
         <semantic:inputData href="#_02aa58c8-77ab-4755-aa06-3734ca18b308"/>
     </semantic:decisionService>
@@ -242,15 +239,15 @@
                 </semantic:decisionTable>
             </semantic:contextEntry>
             <semantic:contextEntry id="_6c39c22e-19a8-45e2-acea-3639e75a8424">
-                <semantic:variable name="Current Medications" id="_b18e185b-e90b-4493-b87d-6378f217f706" typeRef="Any"/>
+                <semantic:variable name="Current Hypertension Medications" id="_b18e185b-e90b-4493-b87d-6378f217f706" typeRef="Any"/>
                 <semantic:literalExpression expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" triso:unparsed="true" id="_fcdf4bde-7d3d-4f53-9136-622cf830a97c">
                     <semantic:text>Blood Pressure Medications()[Code in Patient Record.Medication Codes].Display Name</semantic:text>
                 </semantic:literalExpression>
             </semantic:contextEntry>
             <semantic:contextEntry id="_f82ee279-aceb-4079-aa44-893ab81874a2">
-                <semantic:variable name="On Hypertension Medication" id="_28836455-667d-4d8a-8044-4aead7ce9a44" typeRef="boolean"/>
+                <semantic:variable name="Is Taking Hypertension Medication" id="_28836455-667d-4d8a-8044-4aead7ce9a44" typeRef="boolean"/>
                 <semantic:literalExpression id="_8f0a1dd4-7271-4be9-bdea-9355e71e7085">
-                    <semantic:text>count(Current Medications) &gt; 0</semantic:text>
+                    <semantic:text>count(Current Hypertension Medications) &gt; 0</semantic:text>
                 </semantic:literalExpression>
             </semantic:contextEntry>
             <semantic:contextEntry id="_27b1027d-eca9-462d-88f7-adb3cc41fbac">
@@ -266,13 +263,12 @@
                     </semantic:input>
                     <semantic:input id="_fa490055-355e-4b3d-8a7c-ae862620c432" triso:allowNull="true">
                         <semantic:inputExpression typeRef="boolean">
-                            <semantic:text>On Hypertension Medication</semantic:text>
+                            <semantic:text>Is Taking Hypertension Medication</semantic:text>
                         </semantic:inputExpression>
                     </semantic:input>
                     <semantic:output id="_67194b0b-529b-40bc-ae40-3acb55a876f4" triso:allowNull="true" name="Medications" typeRef="tTextList"/>
                     <semantic:output id="_d6a3bdef-11be-47b0-bef2-0ed13ddae4bd" triso:allowNull="true" name="hasHighBp" typeRef="boolean"/>
                     <semantic:output id="_a59d716c-e1ce-477f-bc2e-e6460ea06a36" triso:allowNull="true" name="Systolic" typeRef="number"/>
-                    <semantic:output id="_3884f142-de6b-4e72-b364-63b5b71ef336" triso:allowNull="true" name="rule" typeRef="number"/>
                     <semantic:annotation name="Description"/>
                     <semantic:rule id="_c850f6d1-1288-4950-9afc-62d7489f3b0c">
                         <semantic:inputEntry id="_95da5d0d-30c8-4e7f-abc7-56db837d5809" triso:mergeKey="_27905f1d-e0d6-4433-b8d3-4b9dc0d19da9">
@@ -282,16 +278,13 @@
                             <semantic:text>true</semantic:text>
                         </semantic:inputEntry>
                         <semantic:outputEntry id="_61b17eb4-49c5-4dd2-80bf-24108a4939f3">
-                            <semantic:text>Current Medications</semantic:text>
+                            <semantic:text>Current Hypertension Medications</semantic:text>
                         </semantic:outputEntry>
                         <semantic:outputEntry id="_eba36701-1bfe-4668-8a99-a2fbed2a5fb0">
                             <semantic:text>true</semantic:text>
                         </semantic:outputEntry>
                         <semantic:outputEntry id="_20a62a32-ea5e-4715-837a-80ee3a860de1">
                             <semantic:text>Target Systolic</semantic:text>
-                        </semantic:outputEntry>
-                        <semantic:outputEntry id="_92a17bbe-afd4-454f-b663-c6210eaf5358">
-                            <semantic:text>1</semantic:text>
                         </semantic:outputEntry>
                         <semantic:annotationEntry>
                             <semantic:text/>
@@ -305,16 +298,13 @@
                             <semantic:text>false</semantic:text>
                         </semantic:inputEntry>
                         <semantic:outputEntry id="_16ccaa44-7398-492e-a451-4122ba51b824">
-                            <semantic:text>["No Meds"]</semantic:text>
+                            <semantic:text>[]</semantic:text>
                         </semantic:outputEntry>
                         <semantic:outputEntry id="_449354d7-bf73-44ca-9ad8-4c6e41c88f3a">
                             <semantic:text>true</semantic:text>
                         </semantic:outputEntry>
                         <semantic:outputEntry id="_5c27dd9b-8b98-4686-b9dc-49549dd06e0f">
                             <semantic:text>Target Systolic</semantic:text>
-                        </semantic:outputEntry>
-                        <semantic:outputEntry id="_75208cbe-37e5-4971-9ca0-a43dc538a503">
-                            <semantic:text>2</semantic:text>
                         </semantic:outputEntry>
                         <semantic:annotationEntry>
                             <semantic:text/>
@@ -328,16 +318,13 @@
                             <semantic:text>true</semantic:text>
                         </semantic:inputEntry>
                         <semantic:outputEntry id="_b413099a-27f4-45e9-bd40-50c770ec3a7d">
-                            <semantic:text>Current Medications</semantic:text>
+                            <semantic:text>Current Hypertension Medications</semantic:text>
                         </semantic:outputEntry>
                         <semantic:outputEntry id="_904d2194-fba5-43ed-a15d-389a0d3b1b64">
                             <semantic:text>false</semantic:text>
                         </semantic:outputEntry>
                         <semantic:outputEntry id="_43134337-c085-4792-80f3-f36da8bdf66d">
                             <semantic:text>Target Systolic</semantic:text>
-                        </semantic:outputEntry>
-                        <semantic:outputEntry id="_2032e962-519b-4655-9e64-7809b1400ede">
-                            <semantic:text>3</semantic:text>
                         </semantic:outputEntry>
                         <semantic:annotationEntry>
                             <semantic:text/>
@@ -351,16 +338,13 @@
                             <semantic:text>false</semantic:text>
                         </semantic:inputEntry>
                         <semantic:outputEntry id="_152b1746-f18a-47fc-b112-e20ba4a2c6cb">
-                            <semantic:text>["No Meds"]</semantic:text>
+                            <semantic:text>[]</semantic:text>
                         </semantic:outputEntry>
                         <semantic:outputEntry id="_6a192d34-b310-4f3d-9eb7-3755d571dfa3">
                             <semantic:text>false</semantic:text>
                         </semantic:outputEntry>
                         <semantic:outputEntry id="_2626d4a1-9243-48eb-b314-0a3ddc84c036">
                             <semantic:text>Target Systolic</semantic:text>
-                        </semantic:outputEntry>
-                        <semantic:outputEntry id="_25b08db0-d45b-48b7-addd-cf1122924abc">
-                            <semantic:text>4</semantic:text>
                         </semantic:outputEntry>
                         <semantic:annotationEntry>
                             <semantic:text/>

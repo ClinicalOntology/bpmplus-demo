@@ -1,0 +1,3 @@
+{"resourceType":"Patient","id":"1000008","identifier":[{"system":"http://edu.utah.health/mrn","value":"1000008"}],"name":[{"family":"NoGoodKidney","given":["Jack"]}],"gender":"male","birthDate":"1957-07-12"}
+{"resourceType":"Condition","clinicalStatus":"active","code":{"coding":[{"system":"http://hl7.org/fhir/sid/icd-9-cm","code":"585.5","display":"Chronic kidney disease, Stage V"}]},"subject":{"reference":"Patient/1000008"}}
+{"resourceType":"Observation","subject":{"reference":"Patient/1000008"},"component":[{"code":{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.1","code":"8462-4"}]},"valueQuantity":{"value":87,"unit":"mmHg"}},{"code":{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.1","code":"8480-6"}]},"valueQuantity":{"value":139,"unit":"mmHg"}}]}

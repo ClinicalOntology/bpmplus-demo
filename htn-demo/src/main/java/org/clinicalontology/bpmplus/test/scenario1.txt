@@ -1,0 +1,2 @@
+{"resourceType":"Patient","id":"1000000","identifier":[{"system":"http://edu.utah.health/mrn","value":"1000000"}],"name":[{"family":"GesunderMann","given":["Ari"]}],"gender":"male","birthDate":"1966-07-12"}
+{"resourceType":"Observation","subject":{"reference":"Patient/1000000"},"component":[{"code":{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.1","code":"8462-4"}]},"valueQuantity":{"value":76,"unit":"mmHg"}},{"code":{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.1","code":"8480-6"}]},"valueQuantity":{"value":118,"unit":"mmHg"}}]}
