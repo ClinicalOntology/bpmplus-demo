@@ -22,7 +22,7 @@ class Tester {
 				BufferedReader bufferReader = new BufferedReader(reader);
 
 				String line = null;
-				while ((String line = bufferReader.readLine()) != null) {
+				while ((line = bufferReader.readLine()) != null) {
 					IBaseResource resource = parser.parseResource(line);
 					if (resource instanceof Observation) {
 						// do xyz
