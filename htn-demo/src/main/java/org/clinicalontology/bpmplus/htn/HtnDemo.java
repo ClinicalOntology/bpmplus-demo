@@ -110,7 +110,7 @@ public class HtnDemo {
 
         final DMNContext context = DMNFactory.newContext();
 
-        context.set("Patient Record", LoadTest1());
+        context.set("Patient Record", LoadTest5());
 
         final DMNResult dmnResult = runtime.evaluateAll(dmnModel, context );
 
@@ -224,7 +224,26 @@ public class HtnDemo {
     	
     	return patient_record;
     }
-
+    private Map LoadTest5() // No Hypertension, over 60, on meds
+    {
+    
+    	final Map<String, Object> patient_record = new HashMap<String, Object>(  );
+    	List<String> medicationList = new ArrayList<>(  );
+    	List<String> conditions = new ArrayList<>(  );
+    	
+    	medicationList.add("314076");  
+    	
+    	conditions.add("429457004"); 
+    	conditions.add("190388001"); 
+    	
+    	patient_record.put("Medication Codes", medicationList);
+    	patient_record.put("Active Conditions", conditions);
+    	patient_record.put("Systolic", 149);
+    	patient_record.put("Diastolic", 92);
+    	patient_record.put("DOB", LocalDate.parse("1954-07-14"));
+    	
+    	return patient_record;
+    }
     private LocalDateTime date(final String date ) {
         return LocalDateTime.parse( date );
     }
