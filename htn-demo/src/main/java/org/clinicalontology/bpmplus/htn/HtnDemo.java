@@ -103,14 +103,14 @@ public class HtnDemo {
 
     
     public void demo() {
-        final DMNRuntime runtime = DMNRuntimeUtil.createRuntime("BP Recommendations.dmn", this.getClass() );
+        final DMNRuntime runtime = DMNModelLoader.createRuntime("BP Recommendations.dmn", this.getClass() );
         final DMNModel dmnModel = runtime.getModel("http://www.trisotech.com/definitions/_fcefcca4-3897-4be0-8c8e-4d81bba9cee5", "BP Recommendations" );
         assertThat( dmnModel, notNullValue() );
         assertThat( DMNRuntimeUtil.formatMessages( dmnModel.getMessages() ), dmnModel.hasErrors(), is(false) ); // need proper type support to enable this
 
         final DMNContext context = DMNFactory.newContext();
 
-        context.set("Patient Record", LoadTest4());
+        context.set("Patient Record", LoadTest1());
 
         final DMNResult dmnResult = runtime.evaluateAll(dmnModel, context );
 
