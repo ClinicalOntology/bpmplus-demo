@@ -1,39 +1,23 @@
 package org.clinicalontology.bpmplus.htn;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
 import org.drools.compiler.kie.builder.impl.InternalKieModule;
-import org.junit.Assert;
 import org.kie.api.KieServices;
-import org.kie.api.builder.KieBuilder;
-import org.kie.api.builder.KieFileSystem;
-import org.kie.api.builder.KieModule;
-import org.kie.api.builder.Message;
-import org.kie.api.builder.ReleaseId;
-import org.kie.api.builder.Results;
+import org.kie.api.builder.*;
 import org.kie.api.io.Resource;
 import org.kie.api.runtime.KieContainer;
 import org.kie.dmn.api.core.DMNMessage;
 import org.kie.dmn.api.core.DMNRuntime;
-import org.kie.dmn.api.core.event.AfterEvaluateBKMEvent;
-import org.kie.dmn.api.core.event.AfterEvaluateDecisionEvent;
-import org.kie.dmn.api.core.event.AfterEvaluateDecisionTableEvent;
-import org.kie.dmn.api.core.event.BeforeEvaluateBKMEvent;
-import org.kie.dmn.api.core.event.BeforeEvaluateDecisionEvent;
-import org.kie.dmn.api.core.event.BeforeEvaluateDecisionTableEvent;
-import org.kie.dmn.api.core.event.DMNRuntimeEventListener;
-import org.kie.dmn.core.api.event.DefaultDMNRuntimeEventListener;
 import org.kie.dmn.core.compiler.RuntimeTypeCheckOption;
 import org.kie.dmn.core.impl.DMNRuntimeImpl;
 import org.kie.internal.builder.InternalKieBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 //import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 public final class DMNModelLoader {
 
@@ -46,7 +30,9 @@ public final class DMNModelLoader {
 				ks.getResources().newClassPathResource(resourceName, testClass));
 
 		final DMNRuntime runtime = typeSafeGetKieRuntime(kieContainer);
-		Assert.assertNotNull(runtime);
+		if(runtime == null) {
+		    throw new RuntimeException("BPM runtime is null");
+        }
 		return runtime;
 	}
 

@@ -1,45 +1,25 @@
 package org.clinicalontology.bpmplus.htn;
 
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Coding;
 import org.hl7.fhir.dstu3.model.Condition;
 import org.hl7.fhir.dstu3.model.MedicationRequest;
 import org.hl7.fhir.dstu3.model.Observation;
 import org.hl7.fhir.dstu3.model.Observation.ObservationComponentComponent;
 import org.hl7.fhir.dstu3.model.Patient;
-import org.kie.api.KieServices;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
+import org.kie.dmn.api.core.DMNContext;
+import org.kie.dmn.api.core.DMNModel;
+import org.kie.dmn.api.core.DMNResult;
+import org.kie.dmn.api.core.DMNRuntime;
+import org.kie.dmn.core.api.DMNFactory;
+import org.kie.dmn.core.util.DMNRuntimeUtil;
 
-import org.kie.api.runtime.manager.RuntimeEngine;
-
-import org.kie.api.runtime.manager.RuntimeManager;
-
-import org.kie.api.runtime.process.ProcessInstance;
-
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-import org.kie.dmn.api.core.DMNContext;
-import org.kie.dmn.api.core.DMNDecisionResult;
-import org.kie.dmn.api.core.DMNModel;
-import org.kie.dmn.api.core.DMNResult;
-import org.kie.dmn.api.core.DMNRuntime;
-import org.kie.dmn.core.api.DMNFactory;
-import org.kie.dmn.core.compiler.RuntimeTypeCheckOption;
-import org.kie.dmn.core.impl.DMNRuntimeImpl;
-
-import org.kie.dmn.core.util.DMNRuntimeUtil;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;

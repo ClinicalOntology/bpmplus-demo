@@ -1,7 +1,5 @@
 package org.clinicalontology.bpmplus.htn;
 
-import org.hl7.fhir.dstu3.model.MedicationRequest;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
